@@ -1,0 +1,4 @@
+body { min-height: 100vh; }
+.table td, .table th { white-space: nowrap; }
+.app-content { padding: 1rem; }
+.card-tools { float: right; }

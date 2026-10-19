@@ -1,0 +1,7 @@
+@model IEnumerable<THLab1.Models.MenuItem>
+<ul class="nav sidebar-menu flex-column" role="menu">
+@foreach (var item in Model)
+{
+    <li class="nav-item"><a class="nav-link" href="@item.Link"><i class="nav-icon @item.Icon"></i><p>@item.Name</p></a></li>
+}
+</ul>

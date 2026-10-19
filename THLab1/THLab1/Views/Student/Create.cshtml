@@ -1,0 +1,84 @@
+﻿@model THLab1.Models.Student
+@using THLab1.Models
+
+@{
+    ViewData["Title"] = "Thêm sinh viên";
+}
+
+<h2>THÊM SINH VIÊN</h2>
+
+<form asp-controller="Student"
+      asp-action="Create"
+      method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control"
+               placeholder="Nhập họ tên" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email"
+               class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DateOfBirth" class="form-label"></label>
+        <input asp-for="DateOfBirth" type="date"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Branch" class="form-label"></label>
+        <select asp-for="Branch"
+                asp-items="Html.GetEnumSelectList<Branch>()"
+                class="form-select">
+            <option value="">-- Chọn ngành --</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giới tính</label><br />
+
+        @foreach (Gender gender in ViewBag.AllGenders)
+        {
+            <input type="radio"
+                   asp-for="Gender"
+                   value="@gender"
+                   id="Gender_@gender" />
+
+            <label for="Gender_@gender">
+                @(gender == Gender.Male ? "Nam" : "Nữ")
+            </label>
+        }
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsRegular" class="form-check-input" />
+        <label asp-for="IsRegular" class="form-check-label">
+            Hệ chính quy
+        </label>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <textarea asp-for="Address"
+                  class="form-control"
+                  placeholder="Nhập địa chỉ"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Create
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Quay lại
+    </a>
+</form>

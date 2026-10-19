@@ -1,0 +1,14 @@
+@model THLab1.Models.Student
+@using THLab1.Models
+@{ ViewData["Title"] = "Create Student"; }
+<div class="card card-primary"><div class="card-header"><h3 class="card-title">Thêm sinh viên</h3></div><form asp-controller="Student" asp-action="Create" method="post"><div class="card-body">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" required /><span asp-validation-for="Name" class="text-danger"></span></div>
+<div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" type="email" class="form-control" required /></div>
+<div class="mb-3"><label asp-for="Password" class="form-label"></label><input asp-for="Password" type="password" class="form-control" /></div>
+<div class="mb-3"><label asp-for="DateOfBirth" class="form-label"></label><input asp-for="DateOfBirth" type="date" class="form-control" /></div>
+<div class="mb-3"><label asp-for="Branch" class="form-label"></label><select asp-for="Branch" asp-items="Html.GetEnumSelectList<Branch>()" class="form-select"><option value="">-- Chọn ngành --</option></select></div>
+<div class="mb-3"><label class="form-label">Giới tính</label><div>@foreach (Gender gender in ViewBag.AllGenders) { <div class="form-check form-check-inline"><input class="form-check-input" type="radio" asp-for="Gender" value="@gender" id="Gender_@gender" /><label class="form-check-label" for="Gender_@gender">@(gender == Gender.Male ? "Nam" : "Nữ")</label></div> }</div></div>
+<div class="form-check mb-3"><input asp-for="IsRegular" class="form-check-input" /><label asp-for="IsRegular" class="form-check-label">Hệ chính quy</label></div>
+<div class="mb-3"><label asp-for="Address" class="form-label"></label><textarea asp-for="Address" class="form-control" rows="2"></textarea></div>
+</div><div class="card-footer"><button type="submit" class="btn btn-primary">Create</button> <a asp-action="Index" class="btn btn-secondary">Quay lại</a></div></form></div>
